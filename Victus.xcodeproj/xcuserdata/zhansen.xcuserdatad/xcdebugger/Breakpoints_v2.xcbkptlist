@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "D1516F53-C05C-4E39-86B9-5610B9C39CDE"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7D29181-2898-466D-BB57-569F22D8F7EC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Victus/ChatModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "makeQuery()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0598ABDA-CAB9-4C07-AFFA-4EEEB5F491D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Victus/ChatModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "makeQuery()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "0598ABDA-CAB9-4C07-AFFA-4EEEB5F491D9 - 72257717d56a27d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Victus.makeQuery() async throws -&gt; ()"
+                  moduleName = "Victus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhansen/xcode/Victus/Victus/ChatModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  uuid = "0598ABDA-CAB9-4C07-AFFA-4EEEB5F491D9 - 1dc79e7f2c3d3e3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for Victus.makeQuery() async throws -&gt; ()"
+                  moduleName = "Victus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhansen/xcode/Victus/Victus/ChatModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "0598ABDA-CAB9-4C07-AFFA-4EEEB5F491D9 - b01b69a2ab14f1cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Victus.makeQuery() async throws -&gt; ()"
+                  moduleName = "Victus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhansen/xcode/Victus/Victus/ChatModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "0598ABDA-CAB9-4C07-AFFA-4EEEB5F491D9 - 5f1062f7e1cc66ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Victus.makeQuery() async throws -&gt; ()"
+                  moduleName = "Victus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhansen/xcode/Victus/Victus/ChatModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "0598ABDA-CAB9-4C07-AFFA-4EEEB5F491D9 - 5f1062f7e1cc66ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Victus.makeQuery() async throws -&gt; ()"
+                  moduleName = "Victus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhansen/xcode/Victus/Victus/ChatModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

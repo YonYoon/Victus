@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct VictusApp: App {
+    @StateObject var openai = ViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            VictusTabView()
+            VictusTabView(viewModel: openai)
         }
     }
 }

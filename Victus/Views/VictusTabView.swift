@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct VictusTabView: View {
+    @ObservedObject var viewModel: ViewModel
+    
     var body: some View {
         TabView {
-            CreateDietView()
+            CreateDietView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "heart.fill")
                     Text("Diet")
                 }
             
-            CalendarView()
+            ChatView(viewModel: viewModel)
+                .tabItem {
+                    Image(systemName: "message.fill")
+                    Text("Nutritionist")
+                }
+            
+            CalendarView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
@@ -32,5 +40,5 @@ struct VictusTabView: View {
 }
 
 #Preview {
-    VictusTabView()
+    VictusTabView(viewModel: ViewModel())
 }
