@@ -12,6 +12,17 @@ struct ChatView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Image(systemName: "person.circle.fill")
+                    .imageScale(.large)
+                    .font(.title)
+                    .foregroundStyle(.accent)
+                    .symbolRenderingMode(.multicolor)
+                Text("Диетолог")
+                    .font(.title2)
+                    .fontWeight(.medium)
+            }
+            
             ScrollView {
                 ForEach(viewModel.messages.filter({$0.role != .system}), id:\.id) { message in
                     messageView(message: message)
@@ -19,18 +30,18 @@ struct ChatView: View {
             }
             
             HStack {
-                TextField("Enter a message...", text: $viewModel.currentInput)
+                TextField("Спросите о диете...", text: $viewModel.currentInput)
                     .padding()
                     .background(.gray.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                 Button {
                     viewModel.sendMessage()
                 } label: {
-                    Label("Send", systemImage: "paperplane.fill")
+                    Image(systemName: "paperplane.fill")
+                        .imageScale(.large)
+                        .font(.title2)
                 }
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.capsule)
-                .tint(.orange)
+                .tint(.accent)
             }
         }
         .padding()

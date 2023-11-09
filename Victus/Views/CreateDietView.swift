@@ -13,9 +13,10 @@ struct CreateDietView: View {
     @State private var healthHistory = ""
     @State private var weight = 0.0
     @State private var height = 0
-//    let goals = ["Weight loss", "Muscle gain", "Manage health condition", "Improve energy level", "General well-being"]
-    @State private var goal = "Weight loss"
-    @State private var budget = 0.0
+    @State private var goal = "Сбросить вес"
+    @State private var budget = 0
+    @State private var lifestyleBinding = "Сидячий"
+    @State private var lifestyle = ["Сидячий", "Умеренный", "Активный"]
     @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
@@ -23,64 +24,68 @@ struct CreateDietView: View {
             VStack {
                 Form {
                     Section {
-                        TextField("Previous diseases", text: $healthHistory)
+                        TextField("Ваши заболевания", text: $healthHistory)
                             .focused($isTextFieldFocused)
                     } header: {
-                        Text("Health History")
+                        Text("История болезней")
                     }
                     
                     Section {
-                        TextField("Weight", value: $weight, format: .number)
+                        TextField("Вес", value: $weight, format: .number, prompt: Text("Ваш вес"))
                             .keyboardType(.decimalPad)
                             .focused($isTextFieldFocused)
                             .overlay(alignment: .trailing) {
-                                Text("kg")
+                                Text("кг")
                             }
                         
-                        TextField("Height", value: $height, format: .number, prompt: Text("Your height"))
+                        TextField("Рост", value: $height, format: .number, prompt: Text("Ваш рост"))
                             .keyboardType(.numberPad)
                             .focused($isTextFieldFocused)
                             .overlay(alignment: .trailing) {
-                                Text("cm")
+                                Text("см")
                             }
                     } header: {
-                        Text("Body Mass Index")
+                        Text("Индекс массы тела")
                     }
                     
                     Section {
-                        TextField("Goal", text: $goal)
+                        TextField("Цель", text: $goal)
                             .focused($isTextFieldFocused)
                     } header: {
-                        Text("Your goal")
+                        Text("Ваша цель")
                     }
-//                    Picker("Your goal", selection: $goal) {
-//                        ForEach(goals, id: \.self) {
-//                            Text($0)
-//                        }
-//                    }
                     
                     Section {
-                        TextField("Budget", value: $budget, format: .currency(code: "KZT"))
+                        Picker("Образ жизни", selection: $lifestyleBinding) {
+                            ForEach(lifestyle, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                    }
+                    
+                    Section {
+                        TextField("Бюджет", value: $budget, format: .currency(code: "KZT"))
                             .keyboardType(.decimalPad)
                             .focused($isTextFieldFocused)
                     } header: {
-                        Text("Your budget")
-                    }
-                }
-                .navigationTitle("Create Diet")
-                .toolbar {
-                    ToolbarItem {
-                        NavigationLink {
-                            CalendarView(viewModel: viewModel)
-                        } label: {
-                            Text("Create")
-                        }
-                        .simultaneousGesture(TapGesture().onEnded{
-                            viewModel.currentInput = "I am \(height) centimetres tall and weight \(weight)kg. BMI = 22.9. Blood pressure 120/80. 5 mmol/litre. I go to the gym 3 times a week. My goal is to \(goal). My monthly food budget is \(budget) tenge.  Write down the portion sizes and cash outlays for the day. Make me a meal plan for 7 days. Each day should have unique diet."
-                            viewModel.sendMessage()
-                        })
+                        Text("Ваш бюджет")
                     }
                     
+                    Section {
+                        Button {
+                            viewModel.currentInput = "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
+                            viewModel.sendMessage()
+                        } label: {
+                            Label("Создать", systemImage: "wand.and.stars")
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .imageScale(.large)
+                                .frame(maxWidth: .infinity)
+                        }
+                    }
+                }
+                .navigationTitle("Создание диеты")
+                .toolbar {                    
                     ToolbarItemGroup(placement: .keyboard) {
                         Spacer()
                         

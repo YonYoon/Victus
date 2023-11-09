@@ -9,36 +9,37 @@ import SwiftUI
 
 struct VictusTabView: View {
     @ObservedObject var viewModel: ViewModel
+    @ObservedObject var chatViewModel: ChatView.ViewModel
     
     var body: some View {
         TabView {
             CreateDietView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "heart.fill")
-                    Text("Diet")
+                    Text("Создание")
                 }
             
-            ChatView(viewModel: viewModel)
+            ChatView(viewModel: chatViewModel)
                 .tabItem {
                     Image(systemName: "message.fill")
-                    Text("Nutritionist")
+                    Text("Диетолог")
                 }
             
             CalendarView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "calendar")
-                    Text("Calendar")
+                    Text("Диета")
                 }
             
             ArticlesListView()
                 .tabItem {
                     Image(systemName: "newspaper")
-                    Text("Articles")
+                    Text("Статьи")
                 }
         }
     }
 }
 
 #Preview {
-    VictusTabView(viewModel: ViewModel())
+    VictusTabView(viewModel: ViewModel(), chatViewModel: ChatView.ViewModel())
 }

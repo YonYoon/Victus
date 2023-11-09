@@ -8,14 +8,14 @@
 import Foundation
 
 class ViewModel: ObservableObject {
-    @Published var messages: [Message] = [Message(id: UUID(), role: .system, content: "You are a professional nutritionist and diet maker, you help people to make them personal diets and give advices about health and healthy eating. You don't have information about other topics so you avoid to talk about them ALL times", createAt: Date())]
+    @Published var messages: [Message] = [Message(id: "", role: .system, content: "You are a professional nutritionist and diet maker, you help people to make them personal diets and give advices about health and healthy eating. You don't have information about other topics so you avoid to talk about them ALL times", createAt: Date())]
     
     @Published var currentInput: String = ""
     
     private let openAIService = OpenAIService()
     
     func sendMessage() {
-        let newMessage = Message(id: UUID(), role: .user, content: currentInput, createAt: Date())
+        let newMessage = Message(id: "", role: .user, content: currentInput, createAt: Date())
         messages.append(newMessage)
         currentInput = ""
         
@@ -25,7 +25,7 @@ class ViewModel: ObservableObject {
                 print("Had no received message")
                 return
             }
-            let receivedMessage = Message(id: UUID(), role: receivedOpenAIMessage.role, content: receivedOpenAIMessage.content, createAt: Date())
+            let receivedMessage = Message(id: "", role: receivedOpenAIMessage.role, content: receivedOpenAIMessage.content, createAt: Date())
             await MainActor.run {
                 messages.append(receivedMessage)
             }
@@ -33,10 +33,84 @@ class ViewModel: ObservableObject {
     }
 }
 
+extension ChatView {
+    class ViewModel: ObservableObject {
+        @Published var messages: [Message] = [Message(id: "", role: .system, content: "You are a professional nutritionist and diet maker, you help people to make them personal diets and give advices about health and healthy eating. You don't have information about other topics so you avoid to talk about them ALL times", createAt: Date())]
+        
+        @Published var currentInput: String = ""
+        
+        private let openAIService = OpenAIService()
+        
+        func sendMessage() {
+            let newMessage = Message(id: UUID().uuidString, role: .user, content: currentInput, createAt: Date())
+            messages.append(newMessage)
+            currentInput = ""
+            
+            openAIService.sendStreamMessage(messages: messages).responseStreamString { [weak self] stream in
+                guard let self = self else { return }
+                switch stream.event {
+                case .stream(let response):
+                    switch response {
+                    case .success(let string):
+                        let streamResponse = self.parseStreamData(string)
+                        streamResponse.forEach { newMessageResponse in
+                            guard let messageContent = newMessageResponse.choices.first?.delta.content else {
+                                return
+                            }
+                            guard let existingMessageIndex = self.messages.lastIndex(where: {$0.id == newMessageResponse.id}) else {
+                                let newMessage = Message(id: newMessageResponse.id, role: .assistant, content: messageContent, createAt: Date())
+                                self.messages.append(newMessage)
+                                return
+                            }
+                            let newMessage = Message(id: newMessageResponse.id, role: .assistant, content: self.messages[existingMessageIndex].content + messageContent, createAt: Date())
+                            self.messages[existingMessageIndex] = newMessage
+                        }
+                    case .failure(_):
+                        print("FAIL")
+                    }
+                case .complete(_):
+                    print("COMPLETE")
+                }
+            }
+        }
+        
+        func parseStreamData(_ data: String) -> [ChatStreamCompletionResponse] {
+            let responseStrings = data.split(separator: "data:").map({$0.trimmingCharacters(in: .whitespacesAndNewlines)}).filter({!$0.isEmpty})
+            let jsonDecoder = JSONDecoder()
+            
+            return responseStrings.compactMap { jsonString in
+                do {
+                    guard let jsonData = jsonString.data(using: .utf8) else {
+                        print("jsonData returned nil")
+                        return nil
+                    }
+                    let streamResponse = try jsonDecoder.decode(ChatStreamCompletionResponse.self, from: jsonData)
+                    return streamResponse
+                } catch {
+                    return nil
+                }
+            }
+        }
+    }
+}
+
 
 struct Message: Decodable {
-    let id: UUID
+    let id: String
     let role: SenderRole
     let content: String
     let createAt: Date
+}
+
+struct ChatStreamCompletionResponse: Decodable {
+    let id: String
+    let choices: [ChatStreamChoice]
+}
+
+struct ChatStreamChoice: Decodable {
+    let delta: StreamContentItem
+}
+
+struct StreamContentItem: Decodable {
+    let content: String
 }
