@@ -53,6 +53,7 @@
 		150F591E2ACDCFE500F4DC65 = {
 			isa = PBXGroup;
 			children = (
+				152232F62B4BCEB70056B01E /* README.md */,
 				150F59292ACDCFE500F4DC65 /* Victus */,
 				150F59282ACDCFE500F4DC65 /* Products */,
 			);
@@ -73,7 +74,6 @@
 				15F7E7AE2AE0DCC8003B582F /* ChatViewModel.swift */,
 				15F7E7B02AE0DCE4003B582F /* OpenAIService.swift */,
 				15F7E7B52AE0DD0C003B582F /* Constants.swift */,
-				152232F62B4BCEB70056B01E /* README.md */,
 				15F7E7AB2AE0DC65003B582F /* Views */,
 				150F592E2ACDCFE600F4DC65 /* Assets.xcassets */,
 				150F59302ACDCFE600F4DC65 /* Preview Content */,
