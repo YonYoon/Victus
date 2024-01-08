@@ -20,6 +20,8 @@ struct CreateDietView: View {
     
     @FocusState private var isTextFieldFocused: Bool
     
+    @State private var isShowingAlert = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -75,6 +77,7 @@ struct CreateDietView: View {
                     Button {
                         viewModel.currentInput = "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
                         viewModel.sendChatMessage()
+                        isShowingAlert = true
                     } label: {
                         Label("Создать", systemImage: "wand.and.stars")
                             .font(.title2)
@@ -93,6 +96,9 @@ struct CreateDietView: View {
                         isTextFieldFocused = false
                     }
                 }
+            }
+            .alert("Началось создание диеты", isPresented: $isShowingAlert) { } message: {
+                Text("Вы можете посмотреть план на экране \"Диета\"")
             }
         }
     }
