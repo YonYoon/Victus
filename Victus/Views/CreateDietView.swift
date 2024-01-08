@@ -16,7 +16,8 @@ struct CreateDietView: View {
     @State private var goal = "Сбросить вес"
     @State private var budget = 0
     @State private var lifestyleBinding = "Сидячий"
-    @State private var lifestyle = ["Сидячий", "Умеренный", "Активный"]
+    let lifestyle = ["Сидячий", "Умеренный", "Активный"]
+    
     @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
