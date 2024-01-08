@@ -21,77 +21,75 @@ struct CreateDietView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Form {
-                    Section {
-                        TextField("Ваши заболевания", text: $healthHistory)
-                            .focused($isTextFieldFocused)
-                    } header: {
-                        Text("История болезней")
-                    }
-                    
-                    Section {
-                        TextField("Вес", value: $weight, format: .number, prompt: Text("Ваш вес"))
-                            .keyboardType(.decimalPad)
-                            .focused($isTextFieldFocused)
-                            .overlay(alignment: .trailing) {
-                                Text("кг")
-                            }
-                        
-                        TextField("Рост", value: $height, format: .number, prompt: Text("Ваш рост"))
-                            .keyboardType(.numberPad)
-                            .focused($isTextFieldFocused)
-                            .overlay(alignment: .trailing) {
-                                Text("см")
-                            }
-                    } header: {
-                        Text("Индекс массы тела")
-                    }
-                    
-                    Section {
-                        TextField("Цель", text: $goal)
-                            .focused($isTextFieldFocused)
-                    } header: {
-                        Text("Ваша цель")
-                    }
-                    
-                    Section {
-                        Picker("Образ жизни", selection: $lifestyleBinding) {
-                            ForEach(lifestyle, id: \.self) {
-                                Text($0)
-                            }
+            Form {
+                Section {
+                    TextField("Ваши заболевания", text: $healthHistory)
+                        .focused($isTextFieldFocused)
+                } header: {
+                    Text("История болезней")
+                }
+                
+                Section {
+                    TextField("Вес", value: $weight, format: .number, prompt: Text("Ваш вес"))
+                        .keyboardType(.decimalPad)
+                        .focused($isTextFieldFocused)
+                        .overlay(alignment: .trailing) {
+                            Text("кг")
                         }
-                    }
                     
-                    Section {
-                        TextField("Бюджет", value: $budget, format: .currency(code: "KZT"))
-                            .keyboardType(.decimalPad)
-                            .focused($isTextFieldFocused)
-                    } header: {
-                        Text("Ваш бюджет")
-                    }
-                    
-                    Section {
-                        Button {
-                            viewModel.currentInput = "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
-                            viewModel.sendMessage()
-                        } label: {
-                            Label("Создать", systemImage: "wand.and.stars")
-                                .font(.title2)
-                                .fontWeight(.medium)
-                                .imageScale(.large)
-                                .frame(maxWidth: .infinity)
+                    TextField("Рост", value: $height, format: .number, prompt: Text("Ваш рост"))
+                        .keyboardType(.numberPad)
+                        .focused($isTextFieldFocused)
+                        .overlay(alignment: .trailing) {
+                            Text("см")
+                        }
+                } header: {
+                    Text("Индекс массы тела")
+                }
+                
+                Section {
+                    TextField("Цель", text: $goal)
+                        .focused($isTextFieldFocused)
+                } header: {
+                    Text("Ваша цель")
+                }
+                
+                Section {
+                    Picker("Образ жизни", selection: $lifestyleBinding) {
+                        ForEach(lifestyle, id: \.self) {
+                            Text($0)
                         }
                     }
                 }
-                .navigationTitle("Создание диеты")
-                .toolbar {                    
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        
-                        Button("Done") {
-                            isTextFieldFocused = false
-                        }
+                
+                Section {
+                    TextField("Бюджет", value: $budget, format: .currency(code: "KZT"))
+                        .keyboardType(.decimalPad)
+                        .focused($isTextFieldFocused)
+                } header: {
+                    Text("Ваш бюджет")
+                }
+                
+                Section {
+                    Button {
+                        viewModel.currentInput = "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
+                        viewModel.sendChatMessage()
+                    } label: {
+                        Label("Создать", systemImage: "wand.and.stars")
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .imageScale(.large)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+            }
+            .navigationTitle("Создание диеты")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    
+                    Button("Готово") {
+                        isTextFieldFocused = false
                     }
                 }
             }
