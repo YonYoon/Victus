@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct VictusApp: App {
     @StateObject var openai = ViewModel()
-    @StateObject var chatOpenai = ChatView.ViewModel()
+    @StateObject var chatOpenai = ViewModel()
     
     var body: some Scene {
         WindowGroup {
