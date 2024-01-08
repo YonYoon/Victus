@@ -49,6 +49,13 @@
             ReferencedContainer = "container:Victus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OPENAI_API"
+            value = "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"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
