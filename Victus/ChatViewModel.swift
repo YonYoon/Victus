@@ -7,33 +7,6 @@
 
 import Foundation
 
-//class ViewModel: ObservableObject {
-//    @Published var messages: [Message] = [Message(id: "", role: .system, content: "You are a professional nutritionist and diet maker, you help people to make them personal diets and give advices about health and healthy eating. You don't have information about other topics so you avoid to talk about them ALL times", createAt: Date())]
-//    
-//    @Published var currentInput: String = ""
-//    
-//    private let openAIService = OpenAIService()
-//    
-//    func sendMessage() {
-//        let newMessage = Message(id: "", role: .user, content: currentInput, createAt: Date())
-//        messages.append(newMessage)
-//        currentInput = ""
-//        
-//        Task {
-//            let response = await openAIService.sendMessage(messages: messages)
-//            guard let receivedOpenAIMessage = response?.choices.first?.message else {
-//                print("Had no received message")
-//                return
-//            }
-//            let receivedMessage = Message(id: "", role: receivedOpenAIMessage.role, content: receivedOpenAIMessage.content, createAt: Date())
-//            await MainActor.run {
-//                messages.append(receivedMessage)
-//            }
-//        }
-//    }
-//}
-
-//extension ChatView {
 class ViewModel: ObservableObject {
     static let content = "You are a professional nutritionist and diet maker, you help people to make them personal diets and give advices about health and healthy eating. You don't have information about other topics so you avoid to talk about them ALL times"
     @Published var chatMessages: [Message] = [Message(id: "", role: .system, content: content, createAt: Date())]
