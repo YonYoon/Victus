@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VictusTabView: View {
     @ObservedObject var viewModel: ViewModel
-    @ObservedObject var chatViewModel: ChatView.ViewModel
+    @ObservedObject var chatViewModel: ViewModel
     
     var body: some View {
         TabView {
@@ -41,5 +41,5 @@ struct VictusTabView: View {
 }
 
 #Preview {
-    VictusTabView(viewModel: ViewModel(), chatViewModel: ChatView.ViewModel())
+    VictusTabView(viewModel: ViewModel(), chatViewModel: ViewModel())
 }
