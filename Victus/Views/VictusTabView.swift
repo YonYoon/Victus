@@ -13,22 +13,16 @@ struct VictusTabView: View {
     
     var body: some View {
         TabView {
-            CreateDietView(viewModel: viewModel)
+            CalendarView(viewModel: viewModel)
                 .tabItem {
-                    Image(systemName: "heart.fill")
-                    Text("Создание")
+                    Image(systemName: "calendar")
+                    Text("Диета")
                 }
             
             ChatView(viewModel: chatViewModel)
                 .tabItem {
                     Image(systemName: "message.fill")
                     Text("Диетолог")
-                }
-            
-            CalendarView(viewModel: viewModel)
-                .tabItem {
-                    Image(systemName: "calendar")
-                    Text("Диета")
                 }
             
             ArticlesListView()
