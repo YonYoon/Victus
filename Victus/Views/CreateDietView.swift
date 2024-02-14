@@ -91,6 +91,7 @@ struct CreateDietView: View {
                 }
             }
             .navigationTitle("Создание диеты")
+            .scrollBounceBehavior(.basedOnSize)
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
