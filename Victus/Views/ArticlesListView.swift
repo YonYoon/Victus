@@ -40,7 +40,7 @@ struct ArticlesListView: View {
                 }
                 
             }
-            .navigationTitle("Статьи")
+            .navigationTitle("📎 Статьи")
         }
     }
 }
