@@ -9,7 +9,10 @@ import SwiftUI
 
 struct CreateDietView: View {
     @ObservedObject var viewModel: ViewModel
-        
+    
+    @Binding var isActive: Bool
+    @Binding var generated: Bool
+    
     @State private var healthHistory = ""
     @State private var weight = 0.0
     @State private var height = 0
@@ -25,13 +28,6 @@ struct CreateDietView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    TextField("Ваши заболевания", text: $healthHistory)
-                        .focused($isTextFieldFocused)
-                } header: {
-                    Text("История болезней")
-                }
-                
                 Section {
                     TextField("Вес", value: $weight, format: .number, prompt: Text("Ваш вес"))
                         .keyboardType(.decimalPad)
@@ -74,6 +70,13 @@ struct CreateDietView: View {
                 }
                 
                 Section {
+                    TextField("Ваши заболевания", text: $healthHistory)
+                        .focused($isTextFieldFocused)
+                } header: {
+                    Text("История болезней")
+                }
+                
+                Section {
                     Button {
                         viewModel.currentInput = "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
                         viewModel.sendChatMessage()
@@ -97,7 +100,12 @@ struct CreateDietView: View {
                     }
                 }
             }
-            .alert("Началось создание диеты", isPresented: $isShowingAlert) { } message: {
+            .alert("Началось создание диеты", isPresented: $isShowingAlert) {
+                Button("OK", role: .cancel) {
+                    isActive = false
+                    generated = true
+                }
+            } message: {
                 Text("Вы можете посмотреть план на экране \"Диета\"")
             }
         }
@@ -105,5 +113,5 @@ struct CreateDietView: View {
 }
 
 #Preview {
-    CreateDietView(viewModel: ViewModel())
+    CreateDietView(viewModel: ViewModel(), isActive: .constant(true), generated: .constant(false))
 }

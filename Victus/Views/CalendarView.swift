@@ -10,16 +10,30 @@ import SwiftUI
 struct CalendarView: View {
     @ObservedObject var viewModel: ViewModel
     
-    @State private var response: String?
+    @State private var path = NavigationPath()
+    @State private var generated = false
+    @State private var isActive = false
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                Text(viewModel.chatMessages.filter( {$0.role == .assistant } ).last?.content ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum justo leo, iaculis sed suscipit in, varius ut justo. Vivamus vel pretium nisi, eget dignissim libero. Maecenas porta vel ante nec tristique. Ut ullamcorper nulla leo, at tristique enim pellentesque eget. Proin vel interdum odio. Nullam malesuada odio vitae viverra blandit. Mauris massa dolor, finibus vel semper et, dapibus a sapien. Suspendisse est augue, mattis in sodales quis, blandit et erat. Curabitur ac maximus lacus.")
+        NavigationStack(path: $path) {
+            VStack {
+                if generated {
+                    ScrollView {
+                        Text(viewModel.chatMessages.filter( {$0.role == .assistant } ).last?.content ?? "Ошибка")
+                            .padding()
+
+                    }
+                } else {
+                    Button("Создать план питания") {
+                        isActive.toggle()
+                    }
+                }
             }
             .navigationTitle("🍊 План питания")
-            .padding()
             .scrollBounceBehavior(.basedOnSize)
+            .navigationDestination(isPresented: $isActive) {
+                CreateDietView(viewModel: viewModel, isActive: $isActive, generated: $generated)
+            }
         }
     }
 }
