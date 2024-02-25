@@ -9,9 +9,12 @@ import Foundation
 
 class ViewModel: ObservableObject {
     static let content = "You are a professional nutritionist and diet maker, you help people to make them personal diets and give advices about health and healthy eating. You don't have information about other topics so you avoid to talk about them ALL times"
-    @Published var chatMessages: [Message] = [Message(id: "", role: .system, content: content, createAt: Date())]
     
+    @Published var chatMessages: [Message] = [Message(id: "", role: .system, content: content, createAt: Date())]
     @Published var currentInput: String = ""
+    
+    @Published var mealPlans = [MealPlan]()
+    @Published var createdMealPlan = false
     
     private let openAIService = OpenAIService()
     
@@ -63,6 +66,38 @@ class ViewModel: ObservableObject {
             } catch {
                 return nil
             }
+        }
+    }
+    
+    func sendPrompt(message: String) async throws {
+        let urlRequest = try openAIService.generateURLRequest(httpMethod: .post, message: message)
+        
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+//        print(String(data: data, encoding: .utf8)!)
+        do {
+            let result = try decoder.decode(Response.self, from: data)
+            let calls = result.choices.first?.message.toolCalls
+            for i in 0..<(calls?.count)! {
+                guard let argumentData = calls?[i].function.arguments.data(using: .utf8) else {
+                    print("guard let failed")
+                    return
+                }
+                let mealPlan = try JSONDecoder().decode(MealPlan.self, from: argumentData)
+                DispatchQueue.main.async {
+                    self.mealPlans.append(mealPlan)
+                }
+                print(mealPlan)
+            }
+            DispatchQueue.main.async {
+                self.createdMealPlan = true
+            }
+        } catch {
+            print("me")
+            print(error)
         }
     }
 }
