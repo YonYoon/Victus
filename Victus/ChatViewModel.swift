@@ -66,7 +66,6 @@ class ViewModel: ObservableObject {
         }
     }
 }
-//}
 
 
 struct Message: Decodable {
