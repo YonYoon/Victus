@@ -21,6 +21,10 @@ struct CreateDietView: View {
     @State private var lifestyleBinding = "Сидячий"
     let lifestyle = ["Сидячий", "Умеренный", "Активный"]
     
+    private var message: String {
+        return "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
+    }
+    
     @FocusState private var isTextFieldFocused: Bool
     
     @State private var isShowingAlert = false
@@ -78,7 +82,7 @@ struct CreateDietView: View {
                 
                 Section {
                     Button {
-                        viewModel.currentInput = "Мой рост \(height)см и вес \(weight)кг. Мой образ жизни: \(lifestyleBinding). Моя цель это: \(goal). Мой месячный бюджет: \(budget) тенге. Создай для меня персональную диету для каждого дня недели, распиши какие продукты нужны для каждого блюда и сколько это будет стоить."
+                        viewModel.currentInput = message
                         viewModel.sendChatMessage()
                         isShowingAlert = true
                     } label: {
