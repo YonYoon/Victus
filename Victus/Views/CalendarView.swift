@@ -14,15 +14,37 @@ struct CalendarView: View {
     @State private var generated = false
     @State private var isActive = false
     
+    private let days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
-                if generated {
+                if generated && viewModel.createdMealPlan {
                     ScrollView {
-                        Text(viewModel.chatMessages.filter( {$0.role == .assistant } ).last?.content ?? "Ошибка")
-                            .padding()
-
+                        HStack {
+                            VStack(alignment: .leading) {
+                                ForEach(days, id: \.self) { day in
+                                    Text(day)
+                                        .font(.title)
+                                        .fontWeight(.semibold)
+                                    ForEach(viewModel.mealPlans, id: \.self) { mealPlan in
+                                        if mealPlan.dayOfTheWeek.lowercased() == day.lowercased() {
+                                            Text(mealPlan.meal.capitalized)
+                                                .font(.title2)
+                                            Text("Блюдо: \(mealPlan.food)")
+                                            Text("Цена: \(mealPlan.price + 200) тг")
+                                                .padding(.bottom)
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding()
                     }
+                } else if generated {
+                    Text("Создание диеты...")
                 } else {
                     Button("Создать план питания") {
                         isActive.toggle()
