@@ -34,6 +34,13 @@ struct CalendarView: View {
             .navigationDestination(isPresented: $isActive) {
                 CreateDietView(viewModel: viewModel, isActive: $isActive, generated: $generated)
             }
+            .toolbar {
+                if generated {
+                    Button("Создать план питания", systemImage: "arrow.triangle.2.circlepath") {
+                        isActive = true
+                    }
+                }
+            }
         }
     }
 }
