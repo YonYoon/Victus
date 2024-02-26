@@ -77,7 +77,6 @@ class ViewModel: ObservableObject {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-//        print(String(data: data, encoding: .utf8)!)
         do {
             let result = try decoder.decode(Response.self, from: data)
             let calls = result.choices.first?.message.toolCalls
@@ -96,7 +95,6 @@ class ViewModel: ObservableObject {
                 self.createdMealPlan = true
             }
         } catch {
-            print("me")
             print(error)
         }
     }

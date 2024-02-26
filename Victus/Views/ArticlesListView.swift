@@ -8,37 +8,45 @@
 import SwiftUI
 
 struct ArticlesListView: View {
+    let articles = ArticlesModel.articles
+    
+    @State private var sheetDetail: Article?
+    @State private var showingSheet = false
+    
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    Image("fish")
-                        .resizable()
-                        .scaledToFill()
-                        .padding(-10)
-                    VStack(alignment: .leading) {
-                        Text("Чем полезна рыба")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        Text("И как она может изменить вашу жизнь.")
-                            .font(.title3)
+                ForEach(articles) {article in
+                    Section {
+                        Button {
+                            sheetDetail = article
+                            showingSheet = true
+                        } label: {
+                            VStack {
+                                Image(article.imageName)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .padding(-10)
+                                
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(article.title)
+                                            .font(.title2)
+                                            .fontWeight(.semibold)
+                                        
+                                        Spacer()
+                                    }
+                                }
+                                .padding(.vertical)
+                                .padding(.horizontal, 5)
+                            }
+                        }
+                        .foregroundStyle(.primary)
+                        .sheet(item: $sheetDetail) { article in
+                            ArticleDetailView(article: article)
+                        }
                     }
                 }
-                
-                Section {
-                    Image("beef")
-                        .resizable()
-                        .scaledToFill()
-                        .padding(-10)
-                    VStack(alignment: .leading) {
-                        Text("Почему мясо надо есть с овощами")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        Text("Или же это овощи нужно есть с мясом?")
-                            .font(.title3)
-                    }
-                }
-                
             }
             .navigationTitle("📎 Статьи")
         }

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Kak_pitatsya_pravilno_i_raznoobrazno_no_pri_etom_ne_slishkom_1648333775-1280x640.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

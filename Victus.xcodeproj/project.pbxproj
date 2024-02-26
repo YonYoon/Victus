@@ -16,6 +16,8 @@
 		15453D702ACF1EEB0030961F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15453D6F2ACF1EEB0030961F /* CalendarView.swift */; };
 		15453D722ACF1F1C0030961F /* ArticlesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15453D712ACF1F1C0030961F /* ArticlesListView.swift */; };
 		156E1CB32B8B24B400F6715C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 156E1CB22B8B24B400F6715C /* Alamofire */; };
+		15B3F8592B8C693500CAB429 /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3F8582B8C693500CAB429 /* ArticlesModel.swift */; };
+		15B3F85B2B8C6DEA00CAB429 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3F85A2B8C6DEA00CAB429 /* ArticleDetailView.swift */; };
 		15F7E7AD2AE0DCA2003B582F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F7E7AC2AE0DCA2003B582F /* ChatView.swift */; };
 		15F7E7AF2AE0DCC8003B582F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F7E7AE2AE0DCC8003B582F /* ChatViewModel.swift */; };
 		15F7E7B12AE0DCE4003B582F /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F7E7B02AE0DCE4003B582F /* OpenAIService.swift */; };
@@ -32,6 +34,8 @@
 		15453D6D2ACF1ED60030961F /* CreateDietView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDietView.swift; sourceTree = "<group>"; };
 		15453D6F2ACF1EEB0030961F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		15453D712ACF1F1C0030961F /* ArticlesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListView.swift; sourceTree = "<group>"; };
+		15B3F8582B8C693500CAB429 /* ArticlesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesModel.swift; sourceTree = "<group>"; };
+		15B3F85A2B8C6DEA00CAB429 /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
 		15F7E7AC2AE0DCA2003B582F /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		15F7E7AE2AE0DCC8003B582F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		15F7E7B02AE0DCE4003B582F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 				15F7E7AE2AE0DCC8003B582F /* ChatViewModel.swift */,
 				15F7E7B02AE0DCE4003B582F /* OpenAIService.swift */,
 				15F7E7B52AE0DD0C003B582F /* Constants.swift */,
+				15B3F8582B8C693500CAB429 /* ArticlesModel.swift */,
 				15F7E7AB2AE0DC65003B582F /* Views */,
 				150F592E2ACDCFE600F4DC65 /* Assets.xcassets */,
 				150F59302ACDCFE600F4DC65 /* Preview Content */,
@@ -104,6 +109,7 @@
 				15453D6D2ACF1ED60030961F /* CreateDietView.swift */,
 				15453D6F2ACF1EEB0030961F /* CalendarView.swift */,
 				15453D712ACF1F1C0030961F /* ArticlesListView.swift */,
+				15B3F85A2B8C6DEA00CAB429 /* ArticleDetailView.swift */,
 				15F7E7AC2AE0DCA2003B582F /* ChatView.swift */,
 			);
 			path = Views;
@@ -194,6 +200,8 @@
 				15453D6E2ACF1ED60030961F /* CreateDietView.swift in Sources */,
 				15F7E7AD2AE0DCA2003B582F /* ChatView.swift in Sources */,
 				15453D722ACF1F1C0030961F /* ArticlesListView.swift in Sources */,
+				15B3F8592B8C693500CAB429 /* ArticlesModel.swift in Sources */,
+				15B3F85B2B8C6DEA00CAB429 /* ArticleDetailView.swift in Sources */,
 				15F7E7B62AE0DD0C003B582F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
