@@ -116,6 +116,7 @@ struct CreateDietView: View {
                 Button("OK", role: .cancel) {
                     isActive = false
                     generated = true
+                    viewModel.createdMealPlan = false
                 }
             } message: {
                 Text("Вы можете посмотреть план на экране \"Диета\"")
