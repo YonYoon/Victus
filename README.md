@@ -10,6 +10,4 @@ Victus is a school project designed to help people keep healthy diet by AI gener
 Victus won gold medal on regional project olympiad "Gylymi Zhoba" (November 2023) and now we are preparing for republic olympiad.
 
 ### Screenshots:
-<img src="https://i.imgur.com/uMf0X65.png" alt="Diet generation screen" width="250"/>
-<img src="https://i.imgur.com/BCu4tss.png" alt="AI nutritionist chat bot screen" width="250"/>
-<img src="https://i.imgur.com/x3ZoKnN.png" alt="Generatad meal plan screen" width="250"/>
+<img src="https://i.imgur.com/uMf0X65.png" alt="Diet generation screen" width="250"/> <img src="https://i.imgur.com/BCu4tss.png" alt="AI nutritionist chat bot screen" width="250"/> <img src="https://i.imgur.com/wtPhN6B.jpg" alt="Generatad meal plan screen" width="250"/>
